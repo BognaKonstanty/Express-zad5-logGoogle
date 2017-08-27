@@ -27,7 +27,7 @@ passport.use(new GoogleStrategy({
 ));
 
 app.set('view engine', 'pug');
-app.set('views', + './views');
+app.set('views', './views');
 app.use(passport.initialize());
 app.use(passport.session());
 
