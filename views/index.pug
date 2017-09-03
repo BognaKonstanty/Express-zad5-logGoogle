@@ -6,7 +6,7 @@ html
         
     body
         h1 #{header}
-        form(action="/userscreen", method="POST")
+        form(action="http://localhost:3000/logged", method="POST")
             p Username: 
                 input(type="text", name="username", required='true')
             p Password: 

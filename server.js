@@ -35,8 +35,8 @@ app.get('/', function(req, res){
     res.render('index.pug', {header: 'Zaloguj się', user: req.user});
 });
 
-app.get('/logged', function(req, res){
-    res.render('logged.pug', {header: 'Jesteś zalogowany', user: googleProfile });
+app.post('/logged', function(req, res){
+    res.render('logged', {header: 'Jesteś zalogowany', user: googleProfile  });
 });
 
 app.get('/auth/google',

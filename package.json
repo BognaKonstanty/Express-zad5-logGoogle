@@ -12,9 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3",
+    "express": "^4.15.4",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.3"
   }
 }
