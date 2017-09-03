@@ -1,3 +1,10 @@
-h2 Witaj #{header}
+h2 Witaj #{user.displayName}
+dl
+  dt gender
+  dd #{user.gender}
+  dt email
+  dd #{user.email}
+  dd photo
+  dd 
+    img(src=user.photo)
 a(href='/auth/google') Powrót
-

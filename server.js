@@ -8,6 +8,7 @@ var googleProfile = {};
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
+
 passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
@@ -18,11 +19,17 @@ passport.use(new GoogleStrategy({
         callbackURL: config.CALLBACK_URL
     },
     function(accessToken, refreshToken, profile, cb) {
-        googleProfile = {
-            id: profile.id,
-            displayName: profile.displayName
-        };
-        cb(null, profile);
+        process.nextTick(function() {
+            console.log('profile', profile)
+            googleProfile = {
+                id: profile.id,
+                displayName: profile.displayName,
+                gender: profile.gender,
+                email: profile.emails[0].value,
+                photo: profile.photos[0].value
+            };
+            cb(null, profile);
+        })
     }
 ));
 
@@ -32,16 +39,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function(req, res){
-    res.render('index.pug', {header: 'Zaloguj się', user: req.user});
+    res.render('index.pug', {header: 'Zaloguj się', user: req.id});
 });
 
-app.post('/logged', function(req, res){
+app.get('/logged', function(req, res){
     res.render('logged', {header: 'Jesteś zalogowany', user: googleProfile  });
 });
 
 app.get('/auth/google',
-	passport.authenticate('google', {
-	scope : ['profile', 'email']
+    passport.authenticate('google', {
+    scope : ['profile', 'email']
 }));
 
 app.get('/auth/google/callback',
