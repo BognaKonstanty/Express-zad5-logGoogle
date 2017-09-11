@@ -39,11 +39,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function(req, res){
-    res.render('index.pug', {header: 'Zaloguj się', user: req.id});
+    res.render('first-view1.pug', {header: 'Zaloguj się', user: req.id});
 });
 
 app.get('/logged', function(req, res){
-    res.render('logged', {header: 'Jesteś zalogowany', user: googleProfile  });
+    res.render('logged.pug', {header: 'Jesteś zalogowany', user: googleProfile  });
 });
 
 app.get('/auth/google',
